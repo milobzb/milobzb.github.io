@@ -12,8 +12,8 @@ const Header = () => {
 
       <div className="container header__container">
         <h5>Hello! My Name Is</h5>
-        <h1>Renato Adolfo Diaz</h1>
-        <h5 className="text-light">Software Engineer | Undergraduate Researcher | NACME | SHPE</h5>
+        <h1>Emanuel Botros</h1>
+        <h5 className="text-light">Security+ | M.S. Cybersecurity (In Progress) | B.S. in IT | Focus in Cybersecurity, Networking & Systems | UCF Alumni</h5>
         <CTA />
         <HeaderSocials />
         <div className="me">
