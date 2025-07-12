@@ -39,10 +39,19 @@ body {
     background: var(--color-bg);
     color: var(--color-white);
     line-height: 1.7;
-    background-image: url(../src/assets/binary-texture.png);
-    /* this is the ^ background pattern icon */
+    background-image: url('./assets/mount-fuji.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
+@media screen and (max-width: 768px) {
+  body {
+    background-size: contain;
+    background-position: top;
+  }
+}
 /* GENERAL STYLES */
 .container {
     width: var(--container-width-lg);
