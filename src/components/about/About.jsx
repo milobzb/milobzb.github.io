@@ -16,7 +16,7 @@ const About = () =>
 
         <div className="about__me">
           <div className="about__me-image">
-            <img src={ME} alt="Headshot of Renato" />
+            <img src={ME} alt="Headshot of Emanuel" />
           </div>
         </div>
 
@@ -39,24 +39,21 @@ const About = () =>
             <article className='about__card'>
               <TbSchool className='about__icon' />
               <h5>Graduation</h5>
-              <small>UCF | Fall 2024</small>
+              <small>UCF | Spring 2025</small>
             </article>
 
           </div>
 
           {/* this is where your biography paragraph goes, DO NOT GO OVER 60 WORDS! */}
           <p>
-          I am currently a senior pursuing a <i>Bachelor's Degree in Computer Science</i> at the <strong>University of Central Florida</strong>. 
-          My interests lie in Big Data, Machine Learning, Artificial Intelligence, & Game Development. Additionally,
-          I am an undergraduate researcher and work as a Peer Mentor for students interested in pursuing
-          internship or research opportunities as well. <br /> <br /> I'm a firm believer that you miss every single opportunity that you don't take.
-          After all, success starts with hard work and determination. I love to talk about all things tech, so why don't we have a conversation? Feel free to reach out!
+          An IT graduate with hands-on experience in troubleshooting, networking, and security, now pursuing a <i>Master's Degree in Cybersecurity</i> at the <strong>University of Central Florida</strong>. 
+          My skills include threat analysis, system troubleshooting, and secure network infrastructure. I thrive on solving real-world tech challenges while continuously learning. <br /> <br /> Inspired by global culture, my portfolio reflects my journey through outdoor destinations like Egypt’s pyramids in Cairo, Japan’s Mount Fuji in Tokyo, and France's Eiffel Tower in Paris. I am also a proud Coptic Orthodox Christian, and my faith deeply shapes my values, work ethic, and sense of purpose throughout my day-to-day life. 
           </p>
 
           <a href="#contact" className='btn btn-primary'>Contact Me</a>
-          <a href="https://github.com/NrgNinja" className='btn' target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AETOMgEdzcW9UbzUVRLRKDZhZE3AdR2l7OF4yP3HvxBK5zzN4CDEYPHL5xendVwRZ5VGJaMIgPDlaPpFpdJ_Pmw30iFn&user=cgbwfMUAAAAJ" className='btn btn-primary' target="_blank" rel="noreferrer">Google Scholar</a>
-          <a href="https://leetcode.com/u/NrgNinja/" className='btn' target="_blank" rel="noreferrer">LeetCode</a>
+          <a href="https://github.com/milobzb" className='btn' target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://tryhackme.com/p/Milobzb" className='btn btn-primary' target="_blank" rel="noreferrer">TryHackMe</a>
+          <a href="https://www.credly.com/users/emanuel-botros/badges" className='btn' target="_blank" rel="noreferrer">Credly</a>
         </div>
       </div>
     </section>
