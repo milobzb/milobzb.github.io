@@ -11,7 +11,7 @@ const Services = () => {
       <div className="container services__container">
         <article className="service">
           <div className="service__head">
-            <h3>Technical Support Specialist, <br /> at United Data Technologies</h3>
+            <h3>Tier 3 Technical Support Engineer, <br /> @ Hybrid Enterprises</h3>
           </div>
 
           <ul className='service__list'>
@@ -36,15 +36,15 @@ const Services = () => {
               <p>SQL Query Language</p>
             </li>
             <li>
-              <CgStark className='service__list-icon'/>
-              <p>Contract Role (based in FL)</p>
+              
+              
             </li>
           </ul>
         </article>
         {/* END OF UI/UX Section */}
         <article className="service">
           <div className="service__head">
-            <h3>Freelance IT Support & Cybersecurity Specialist <br /> </h3>
+            <h3>Technical Support Specialist, <br /> @ United Data Technologies</h3>
           </div>
 
           <ul className='service__list'>
@@ -69,15 +69,15 @@ const Services = () => {
               <p>Troubleshooting small clients and personal networks</p>
             </li>
             <li>
-              <CgStark className='service__list-icon'/>
-              <p>Freelance Role (based in FL)</p>
+              
+              
             </li>
           </ul>
         </article>
         {/* END OF Web Development */}
         <article className="service">
           <div className="service__head">
-            <h3>IT Support Technician, <br /> at Geek Squad</h3>
+            <h3> Freelance IT Support & Cybersecurity Specialist</h3>
           </div>
 
           <ul className='service__list'>
@@ -102,8 +102,8 @@ const Services = () => {
               <p>Data Backups & Logs Setup</p>
             </li>
             <li>
-              <CgStark className='service__list-icon'/>
-              <p>Seasonal Role (based in FL)</p>
+              
+              
             </li>
           </ul>
         </article>
