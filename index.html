@@ -98,7 +98,6 @@
 
   /* ── SECTIONS ── */
   section {
-    min-height: 100vh;
     padding: 120px 64px;
     position: relative;
   }
@@ -424,6 +423,92 @@
     border-radius: 1px;
   }
 
+  /* ── PROJECTS ── */
+  #projects {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 40px 40px;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover { border-color: rgba(0,212,255,0.3); }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(0,212,255,0.6);
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.15);
+    padding: 4px 12px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .project-link:hover { opacity: 0.75; }
+
+  .project-link::after { content: '→'; }
+
   /* ── CERTIFICATIONS ── */
   #certifications {
     max-width: 1200px;
@@ -654,6 +739,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -868,6 +954,40 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
+<section>
+  <div id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-name">Orphaned Account Detector</div>
+        <p class="project-desc">Python automation tool that ingests identity export data (CSV), calculates account inactivity, and flags dormant or orphaned accounts exceeding a configurable threshold — generating a structured audit report to support access review and deprovisioning workflows.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">IAM</span>
+          <span class="project-tag">Automation</span>
+          <span class="project-tag">Identity Management</span>
+        </div>
+        <a href="https://github.com/milobzb/Orphaned-Account-Detector" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-name">IoT Smart Home Threat Model</div>
+        <p class="project-desc">STRIDE threat model and LaTeX report analyzing a smart home IoT ecosystem — router, hub, camera, lock, and cloud backend — identifying attack surfaces and mapping mitigations across the connected device stack.</p>
+        <div class="project-tags">
+          <span class="project-tag">Threat Modeling</span>
+          <span class="project-tag">STRIDE</span>
+          <span class="project-tag">IoT Security</span>
+          <span class="project-tag">LaTeX</span>
+        </div>
+        <a href="https://github.com/milobzb/iot-smart-home-threat-model" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CERTIFICATIONS -->
 <section>
   <div id="certifications">
@@ -930,6 +1050,7 @@
       <div class="contact-links">
         <a href="mailto:milobzb@gmail.com" class="contact-link">milobzb@gmail.com</a>
         <a href="https://linkedin.com/in/milobzb" class="contact-link" target="_blank">linkedin.com/in/milobzb</a>
+        <a href="https://github.com/milobzb" class="contact-link" target="_blank">github.com/milobzb</a>
         <a href="https://emanuelbotros.com" class="contact-link" target="_blank">emanuelbotros.com</a>
         <a class="contact-link">Greater Orlando, FL</a>
       </div>
