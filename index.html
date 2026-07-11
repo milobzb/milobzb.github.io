@@ -444,6 +444,10 @@
     gap: 2px;
   }
 
+  .project-card-wide {
+    grid-column: 1 / -1;
+  }
+
   .project-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -1093,6 +1097,18 @@
           <span class="project-tag">IAM</span>
         </div>
         <a href="https://github.com/milobzb/rbac-policy-checker" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card project-card-wide reveal">
+        <div class="project-name">Security Pipeline</div>
+        <p class="project-desc">Reusable GitHub Actions security pipeline (bash + Docker) that scans repos for hardcoded secrets and vulnerable dependencies on every push, and is wired into Orphaned Account Detector and RBAC Policy Checker with live passing/failing status badges.</p>
+        <div class="project-tags">
+          <span class="project-tag">GitHub Actions</span>
+          <span class="project-tag">Bash</span>
+          <span class="project-tag">Docker</span>
+          <span class="project-tag">DevSecOps</span>
+        </div>
+        <a href="https://github.com/milobzb/security-pipeline" class="project-link" target="_blank">View on GitHub</a>
       </div>
 
     </div>
