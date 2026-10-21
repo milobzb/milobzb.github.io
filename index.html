@@ -744,6 +744,33 @@
     transform: translateY(0);
   }
 
+  /* ── MOBILE (phones and small tablets only, desktop unchanged) ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 20px; }
+    .nav-links { gap: 20px; }
+    section { padding: 80px 20px; }
+    #hero { padding-top: 120px; min-height: auto; padding-bottom: 60px; }
+    #about, #contact { grid-template-columns: 1fr; gap: 40px; }
+    .about-stats { margin-top: 0; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { padding: 28px 20px; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-name { font-size: clamp(30px, 10.5vw, 60px); letter-spacing: -1px; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta a { text-align: center; }
+    .section-label { margin-bottom: 36px; }
+    .stat-num { font-size: 30px; }
+    .stat-box { padding: 24px 20px; }
+    .project-card, .cert-card, .skill-category { padding: 28px 24px; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .exp-desc, .project-desc { font-size: 15px; }
+  }
+
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
