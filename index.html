@@ -296,7 +296,7 @@
     border: 1px solid var(--border);
     padding: 40px 48px;
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 48px;
     transition: border-color 0.3s, background 0.3s;
     cursor: default;
@@ -320,10 +320,11 @@
   .exp-company {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.35;
     color: var(--text);
     margin-bottom: 6px;
+    white-space: nowrap;
   }
 
   .exp-contractor {
@@ -755,6 +756,7 @@
     #about, #contact { grid-template-columns: 1fr; gap: 40px; }
     .about-stats { margin-top: 0; }
     .exp-item { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
+    .exp-company { white-space: normal; font-size: 16px; }
     .projects-grid { grid-template-columns: 1fr; }
     .cert-grid { grid-template-columns: repeat(2, 1fr); }
     footer { padding: 28px 20px; }
