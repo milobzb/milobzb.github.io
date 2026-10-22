@@ -13,7 +13,7 @@
     --accent: #00d4ff;
     --accent2: #0077ff;
     --text: #e8f0ff;
-    --muted: rgba(180,210,255,0.4);
+    --muted: rgba(180,210,255,0.6);
     --border: rgba(0,212,255,0.12);
     --card: rgba(255,255,255,0.03);
   }
@@ -49,6 +49,29 @@
       linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
+  }
+
+  /* ── GRID SPOTLIGHT (follows the mouse on desktop) ── */
+  .grid-spot {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    background-image:
+      radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), rgba(0,212,255,0.09), rgba(0,212,255,0.03) 45%, transparent 75%),
+      linear-gradient(rgba(0,212,255,0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.28) 1px, transparent 1px);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+    -webkit-mask-image: radial-gradient(circle 320px at var(--mx, 50%) var(--my, 50%), rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.18) 60%, transparent 100%);
+            mask-image: radial-gradient(circle 320px at var(--mx, 50%) var(--my, 50%), rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.18) 60%, transparent 100%);
+    will-change: mask-image, -webkit-mask-image;
+  }
+
+  .grid-spot.on { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid-spot { display: none; }
   }
 
   /* ── NAV ── */
@@ -850,6 +873,7 @@
 <div class="top-line"></div>
 <div class="scroll-progress" id="scroll-progress"></div>
 <div class="grid-bg"></div>
+<div class="grid-spot" id="grid-spot"></div>
 
 <!-- NAV -->
 <nav>
@@ -1306,7 +1330,7 @@
       <h2 class="contact-heading">Let's<br><span>Connect</span></h2>
       <p class="contact-sub">Open to new opportunities in IAM, Identity Security, and DevOps engineering. Feel free to reach out.</p>
       <div class="contact-links">
-        <a href="mailto:milobzb@gmail.com" class="contact-link">milobzb@gmail.com</a>
+        <a href="mailto:emanuel.botros24@gmail.com" class="contact-link">emanuel.botros24@gmail.com</a>
         <a href="https://linkedin.com/in/milobzb" class="contact-link" target="_blank">linkedin.com/in/milobzb</a>
         <a href="https://github.com/milobzb" class="contact-link" target="_blank">github.com/milobzb</a>
         <a href="https://emanuelbotros.com" class="contact-link" target="_blank">emanuelbotros.com</a>
@@ -1399,6 +1423,30 @@
 </script>
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Grid spotlight that glides after the mouse (desktop only)
+  (function () {
+    const spot = document.getElementById('grid-spot');
+    // Turns on from real mouse movement only (touch never triggers it), so it works
+    // even on PCs where the browser misreports mouse support.
+    if (!spot || reduceMotion) return;
+    let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, running = false;
+    function frame() {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      spot.style.setProperty('--mx', cx.toFixed(1) + 'px');
+      spot.style.setProperty('--my', cy.toFixed(1) + 'px');
+      if (Math.abs(tx - cx) > 0.3 || Math.abs(ty - cy) > 0.3) requestAnimationFrame(frame);
+      else running = false;
+    }
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      tx = e.clientX; ty = e.clientY;
+      if (!spot.classList.contains('on')) { cx = tx; cy = ty; spot.classList.add('on'); }
+      if (!running) { running = true; requestAnimationFrame(frame); }
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { spot.classList.remove('on'); });
+  })();
 
   // Scroll progress line
   (function () {
