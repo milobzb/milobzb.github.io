@@ -375,6 +375,31 @@
     margin-bottom: 20px;
   }
 
+  .exp-points {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exp-points li {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .exp-points li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .exp-points strong { color: var(--text); font-weight: 400; }
+
   .exp-tags {
     display: flex;
     gap: 8px;
@@ -917,9 +942,16 @@
         </div>
         <div>
           <div class="exp-role">ICAM DevOps Engineer</div>
-          <p class="exp-desc">Monitored DevOps and identity infrastructure, investigating alerts and maintaining system reliability for enterprise authentication services supporting the U.S. Department of Veterans Affairs. Performed back-end configuration updates, tuned queue processing parameters, and analyzed system logs to troubleshoot authentication and infrastructure issues.</p>
+          <ul class="exp-points">
+            <li>Wrote <strong>SQL queries</strong> against Saviynt and automated them with <strong>Python and PowerShell</strong> to flag orphaned, terminated but still active, and 90+ day inactive accounts, cutting quarterly audit prep from <strong>hours to minutes</strong>.</li>
+            <li>Reconciled identity records across multiple data sources and validated query logic on sample sets before full runs, preventing false positive deprovisioning of active users.</li>
+            <li>Monitored identity lifecycle operations across <strong>Saviynt IGA and Microsoft Entra ID</strong>, enforcing RBAC and least privilege controls in line with NIST SP 800-53.</li>
+            <li>Investigated alerts and analyzed logs in <strong>Splunk and Azure Sentinel</strong> to sustain reliability for VA enterprise authentication and access services.</li>
+            <li>Built a reusable <strong>CI/CD security pipeline</strong> with GitHub Actions and Docker that scans repositories for hardcoded secrets and vulnerable dependencies on every push.</li>
+          </ul>
           <div class="exp-tags">
-            <span class="exp-tag">By Light · Public Trust Tier IV</span>
+            <span class="exp-tag">SQL</span>
+            <span class="exp-tag">Python</span>
             <span class="exp-tag">Log Analysis</span>
             <span class="exp-tag">Incident Response</span>
             <span class="exp-tag">Splunk</span>
@@ -936,9 +968,14 @@
         </div>
         <div>
           <div class="exp-role">IAM / IGA Engineer</div>
-          <p class="exp-desc">Managed identity governance operations using Saviynt, Microsoft Azure, and Entra ID — supporting user lifecycle management and secure authentication in the VA environment. Investigated identity-related incidents through ServiceNow, assisted with identity integrations and migration efforts, and validated access workflows across connected applications.</p>
+          <ul class="exp-points">
+            <li>Administered <strong>Saviynt IGA</strong> for identity governance at the VA, managing Joiner/Mover/Leaver workflows, provisioning, deprovisioning, access recertification, and RBAC enforcement.</li>
+            <li>Supported the <strong>migration of provisioning workflows from Okta to Microsoft Entra ID</strong>, resolving a late-stage stakeholder documentation concern with recorded sign-offs so the migration finished on schedule.</li>
+            <li>Managed authentication and authorization across <strong>Okta, Entra ID, Azure AD, SAML, OAuth, and LDAP</strong>, triaging SSO failures, MFA issues, and provisioning incidents through ServiceNow.</li>
+            <li>Maintained <strong>audit-ready compliance documentation</strong> aligned with RMF and FISMA, supporting access reviews, control testing, and evidence collection for federal security assessments.</li>
+          </ul>
           <div class="exp-tags">
-            <span class="exp-tag">American Comms Team · Public Trust Tier 2</span>
+            <span class="exp-tag">Okta</span>
             <span class="exp-tag">Saviynt</span>
             <span class="exp-tag">Entra ID</span>
             <span class="exp-tag">CyberArk</span>
@@ -951,17 +988,20 @@
       <div class="exp-item reveal">
         <div class="exp-meta">
           <div class="exp-period">May 2025 — Jun 2025</div>
-          <div class="exp-company">United Data Technologies</div>
+          <div class="exp-company">United Data Technologies<span class="exp-contractor">(4 Corner Resources)</span></div>
           <div class="exp-location">Orlando, FL · On-site</div>
         </div>
         <div>
           <div class="exp-role">Technical Support Specialist / IT Quality Repair Technician</div>
-          <p class="exp-desc">Completed a short-term contract supporting end users via ConnectWise with hardware and software troubleshooting, password resets, and account lockouts via Active Directory. Assisted in implementing security protocols and conducted vulnerability assessments to identify and mitigate potential risks.</p>
+          <ul class="exp-points">
+            <li>Resolved hardware, software, and account access issues via <strong>ConnectWise</strong>, including password resets and account lockouts through <strong>Active Directory</strong>.</li>
+            <li>Maintained detailed documentation of diagnostics and test outcomes, ensuring traceability and audit-ready records across the service lifecycle.</li>
+          </ul>
           <div class="exp-tags">
-            <span class="exp-tag">AWS</span>
-            <span class="exp-tag">Linux</span>
+            <span class="exp-tag">Active Directory</span>
+            <span class="exp-tag">ConnectWise</span>
             <span class="exp-tag">Hardware</span>
-            <span class="exp-tag">Networking</span>
+            <span class="exp-tag">Troubleshooting</span>
           </div>
         </div>
       </div>
@@ -1175,7 +1215,7 @@
           <span class="project-tag">Threat Detection</span>
           <span class="project-tag">Automation</span>
         </div>
-        <a href="https://github.com/milobzb/login-anamaly-detector" class="project-link" target="_blank">View on GitHub</a>
+        <a href="https://github.com/milobzb/login-anomaly-detector" class="project-link" target="_blank">View on GitHub</a>
       </div>
 
       <div class="project-card reveal">
