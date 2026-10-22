@@ -144,6 +144,22 @@
     animation: fadeUp 0.8s ease forwards 0.2s;
   }
 
+  .type-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.15em;
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    background: var(--accent);
+    animation: blink 1s steps(1) infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .type-cursor { animation: none; }
+  }
+
   .hero-name {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
@@ -274,6 +290,9 @@
   }
 
   .stat-num-sm { font-size: 30px; line-height: 1.33; }
+  @media (min-width: 901px) and (max-width: 1150px) {
+    .stat-num-sm { font-size: 24px; line-height: 1.67; }
+  }
 
   .stat-label {
     font-family: 'DM Mono', monospace;
@@ -724,6 +743,24 @@
     z-index: 200;
   }
 
+  /* ── SCROLL PROGRESS ── */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    box-shadow: 0 0 8px rgba(0,212,255,0.6);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 201;
+    pointer-events: none;
+  }
+
+  /* ── TEXT SELECTION ── */
+  ::selection { background: rgba(0,212,255,0.35); color: #fff; }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -786,6 +823,7 @@
 <body>
 
 <div class="top-line"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
 <div class="grid-bg"></div>
 
 <!-- NAV -->
@@ -803,7 +841,7 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow">ICAM DevOps Engineer</div>
+  <div class="hero-eyebrow" aria-label="ICAM DevOps Engineer"><span id="type-text" aria-hidden="true">ICAM DevOps Engineer</span><span class="type-cursor" aria-hidden="true"></span></div>
   <h1 class="hero-name">
     EMANUEL<br><span class="last">BOTROS</span>
   </h1>
@@ -838,11 +876,11 @@
     </div>
     <div class="about-stats reveal">
       <div class="stat-box">
-        <div class="stat-num">500K+</div>
+        <div class="stat-num" data-count="500" data-suffix="K+">500K+</div>
         <div class="stat-label">VA Enterprise Users Supported</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">4</div>
+        <div class="stat-num" data-count="4">4</div>
         <div class="stat-label">Active Certifications</div>
       </div>
       <div class="stat-box">
@@ -850,7 +888,7 @@
         <div class="stat-label">Audit Prep Automated with SQL + Python</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">1+ yrs</div>
+        <div class="stat-num" data-count="1" data-suffix="+ yrs">1+ yrs</div>
         <div class="stat-label">Federal Enterprise IT Experience</div>
       </div>
       <div class="stat-box">
@@ -858,7 +896,7 @@
         <div class="stat-label">Public Trust Clearance</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">B.S. + M.S.</div>
+        <div class="stat-num stat-num-sm">B.S. + M.S.</div>
         <div class="stat-label">UCF Dual Degrees</div>
       </div>
     </div>
@@ -1318,6 +1356,62 @@
       alert('Something went wrong. Please try again.');
     }
   });
+</script>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll progress line
+  (function () {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    let ticking = false;
+    function update() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // Stats count up once when scrolled into view
+  (function () {
+    const nums = document.querySelectorAll('.stat-num[data-count]');
+    const box = document.querySelector('.about-stats');
+    if (!nums.length || !box || reduceMotion || !('IntersectionObserver' in window)) return;
+    nums.forEach(function (n) { n.textContent = '0' + (n.dataset.suffix || ''); });
+    const io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      const start = performance.now(), dur = 1200;
+      function frame(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        nums.forEach(function (n) {
+          n.textContent = Math.round(ease * Number(n.dataset.count)) + (n.dataset.suffix || '');
+        });
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }, { threshold: 0.4 });
+    io.observe(box);
+  })();
+
+  // Terminal typing effect for the hero title
+  (function () {
+    const el = document.getElementById('type-text');
+    if (!el) return;
+    const full = el.textContent;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.textContent = '';
+    let i = 0;
+    setTimeout(function tick() {
+      el.textContent = full.slice(0, ++i);
+      if (i < full.length) setTimeout(tick, 70);
+    }, 500);
+  })();
 </script>
 </body>
 </html>
