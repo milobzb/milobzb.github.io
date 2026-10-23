@@ -85,8 +85,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(7,11,18,0.95) 0%, transparent 100%);
-    backdrop-filter: blur(8px);
+    background: transparent;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
+  }
+
+  /* Nav stays see-through at the top, then fades in a backdrop once you scroll */
+  nav.scrolled {
+    background: linear-gradient(to bottom, rgba(7,11,18,0.95) 0%, rgba(7,11,18,0) 100%);
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
   }
 
   .nav-logo {
@@ -158,7 +165,7 @@
 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--accent);
@@ -850,6 +857,7 @@
   @media (max-width: 640px) {
     .nav-links { display: none; }
     .hero-name { font-size: clamp(30px, 10.5vw, 60px); letter-spacing: -1px; }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 3px; }
     .hero-cta { flex-direction: column; }
     .hero-cta a { text-align: center; }
     .section-label { margin-bottom: 36px; }
@@ -899,7 +907,7 @@
   </p>
   <div class="hero-tags">
     <span class="tag">IAM / IGA</span>
-    <span class="tag">Zero Trust</span>
+    <span class="tag">SQL + Python</span>
     <span class="tag">Federal / VA</span>
     <span class="tag">Public Trust</span>
   </div>
@@ -1446,6 +1454,15 @@
       if (!running) { running = true; requestAnimationFrame(frame); }
     }, { passive: true });
     document.documentElement.addEventListener('mouseleave', function () { spot.classList.remove('on'); });
+  })();
+
+  // Nav backdrop appears only after scrolling
+  (function () {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    function update() { nav.classList.toggle('scrolled', window.scrollY > 20); }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 
   // Scroll progress line
